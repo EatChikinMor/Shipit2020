@@ -3,14 +3,22 @@ body {
 }
 
 .img-well {
-    position: absolute;
+    /* position: absolute;
     left: 45px;
-    top: 20px
+    top: 20px; */
+    position: absolute;
+    left: -178px;
+    top: -110px;
+    z-index: 0;
+    opacity: .5;
 }
 
+
 .img-well img {
-    height: 133.333px;
-    width: 100px;
+    /* height: 133.333px;
+    width: 100px; */
+    height: 1080px;
+    z-index: 0;
 }
 
 .no-display {
@@ -22,6 +30,7 @@ body {
     padding: 10px 50px;
     text-align: center;
     font-size: 14px;
+    position: relative;
 }
 
 .title {
@@ -54,7 +63,7 @@ button.choose-file-button {
     width: 200px;
     height: 40px;
     border-radius: 2px;
-    background-color: #3a3a3b;
+    background-color: rgba(58,58,59, 0.85);
     border: solid 1px #fdd725;
     font-size: 13px;
     color: #fdd725;
