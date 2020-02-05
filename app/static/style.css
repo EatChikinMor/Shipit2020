@@ -1,5 +1,16 @@
 body {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.img-well {
+    position: absolute;
+    left: 45px;
+    top: 20px
+}
+
+.img-well img {
+    height: 133.333px;
+    width: 100px;
 }
 
 .no-display {
@@ -17,7 +28,7 @@ body {
     font-size: 30px;
     margin-top: 1em;
     margin-bottom: 1em;
-    color: #262626;
+    color: #3a3a3b;
 }
 
 .content {
@@ -43,20 +54,20 @@ button.choose-file-button {
     width: 200px;
     height: 40px;
     border-radius: 2px;
-    background-color: #ffffff;
-    border: solid 1px #7052CB;
+    background-color: #3a3a3b;
+    border: solid 1px #fdd725;
     font-size: 13px;
-    color: #7052CB;
+    color: #fdd725;
 }
 
 button.analyze-button {
     width: 200px;
     height: 40px;
-    border: solid 1px #7052CB;
+    border: solid 1px #fdd725;
     border-radius: 2px;
-    background-color: #7052CB;
+    background-color: #fdd725;
     font-size: 13px;
-    color: #ffffff;
+    color: #3a3a3b;
 }
 
 button:focus {
