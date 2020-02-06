@@ -34,31 +34,34 @@
 
   <div id="content" class='center' style="display: none;">
     <button id="back-button" onclick="changeModel('')">← Back</button>
-    <div id='title'>Classify Batting Images</div>
+    <div id="title">Classify Batting Images</div>
     <p id="description">
       Use images of either Baseball or Cricket to truly nail down which one you're looking at
     </p>
-    <div class='content'>
-      <div class='no-display'>
-        <input id='file-input'
-               class='no-display'
-               type='file'
-               name='file'
-               accept='image/*'
-               onchange='showPicked(this)'>
+    <div class="content">
+      <div class="no-display">
+        <input id="file-input"
+               class="no-display"
+               type="file"
+               name="file"
+               accept="image/*"
+               onchange="showPicked(this)">
       </div>
-      <button id='choose-file-button' type='button' onclick='showPicker()'>Select Image</button>
-      <div class='upload-label'>
-        <label id='upload-label'>No file chosen</label>
+      <button id="choose-file-button" type="button" onclick="showPicker()">Select Image</button>
+      <div class="upload-label">
+        <label id="upload-label">No file chosen</label>
       </div>
       <div>
-        <img id='image-picked' class='no-display' alt='Chosen Image' height='200'>
+        <img id="image-picked" class="no-display" alt="Chosen Image" height="200">
       </div>
-      <div class='analyze'>
-        <button id='analyze-button' id='analyze-Baseball-button' type='button' onclick='analyze()'>Go Go Gadget Analyze</button>
+      <div class="analyze">
+        <button id="analyze-button" id="analyze-Baseball-button" type="button" onclick="analyze()">Go Go Gadget Analyze</button>
       </div>
-      <div class='result-label'>
-        <label id='result-label'></label>
+      <div class="result-label">
+        <label id="result-label"></label>
+      </div>
+      <div class="confidence-label">
+        <label id="confidence-label"></label>
       </div>
     </div>
   </div>

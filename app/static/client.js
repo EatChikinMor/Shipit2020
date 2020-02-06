@@ -17,13 +17,6 @@ function showPicked(input) {
 function analyze(model) {
   let uploadFiles = el("file-input").files;
   if (uploadFiles.length !== 1) alert("Please select a file to analyze!");
-  debugger;
-  let testResponse = {"result":"baseball","resultIndex":"tensor(0)","resultConfidence":"tensor([1.0000e+00, 1.4616e-06])"};
-  let regExp = /\(([^)]+)\)/;
-  let matches = regExp.exec(testResponse.resultIndex);
-  testResponse.resultIndex = parseInt(matches[1], 10);
-  matches = regExp.exec(testResponse.resultConfidence);
-  testResponse.resultConfidence = JSON.parse(matches[1]);
 
   el("analyze-button").innerHTML = "Analyzing...";
   let xhr = new XMLHttpRequest();
@@ -43,7 +36,7 @@ function analyze(model) {
       response.resultConfidence = JSON.parse(matches[1]);
       yieldResult(response)
     }
-    el("analyze--button").innerHTML = "Go Go Gadget Analyze";
+    el("analyze-button").innerHTML = "Go Go Gadget Analyze";
   };
 
   let fileData = new FormData();
@@ -55,7 +48,7 @@ function yieldResult(response) {
   let beginning = 'Hmmmm. I\'m resonably certain It\'s an image of ';
   let confidence = response.resultConfidence[response.resultIndex];
   let rand = Math.floor(Math.random() * 3) + 1
-  if (confidence > 0.6) {
+  if (confidence > 0.8) {
     switch(rand) {
       case 1:
         beginning = 'Oh. This is ';
@@ -88,5 +81,6 @@ function yieldResult(response) {
     }
 
     el("result-label").innerHTML = beginning + response.result.toLowerCase();
+    el("confidence-label").innerHTML = "Confidence:" + confidence*100;
   }
 }
