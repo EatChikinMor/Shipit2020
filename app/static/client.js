@@ -36,7 +36,7 @@ function analyze(model) {
       response.resultConfidence = JSON.parse(matches[1]);
       yieldResult(response)
     }
-    el("analyze-button").innerHTML = "Go Go Gadget Analyze";
+    el("analyze-button").innerHTML = getAnalyzeText();
   };
 
   let fileData = new FormData();
@@ -44,10 +44,22 @@ function analyze(model) {
   xhr.send(fileData);
 }
 
+function getAnalyzeText() {
+  let rand = Math.floor(Math.random() * 3) + 1;
+  switch(rand) {
+    case 1:
+      return "Go Go Gadget Analyze";
+    case 2:
+      return "Analyze This Bad Boy";
+    case 3:
+      return "Analyze";
+  }
+}
+
 function yieldResult(response) {
   let beginning = 'Hmmmm. I\'m resonably certain It\'s an image of ';
   let confidence = response.resultConfidence[response.resultIndex];
-  let rand = Math.floor(Math.random() * 3) + 1
+  let rand = Math.floor(Math.random() * 3) + 1;
   if (confidence > 0.8) {
     switch(rand) {
       case 1:
@@ -81,6 +93,6 @@ function yieldResult(response) {
     }
   }
 
-  el("result-label").innerHTML = beginning + response.result.toLowerCase();
+  el("result-label").innerHTML = beginning + response.result.toLowerCase() + '.';
   el("confidence-label").innerHTML = "Confidence: " + (confidence*100).toFixed(2) + "%";
 }

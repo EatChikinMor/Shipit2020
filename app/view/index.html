@@ -56,7 +56,7 @@
         <img id="image-picked" class="no-display" alt="Chosen Image" height="200">
       </div>
       <div class="analyze">
-        <button id="analyze-button" id="analyze-Baseball-button" type="button" onclick="analyze()">Go Go Gadget Analyze</button>
+        <button id="analyze-button" id="analyze-Baseball-button" type="button" onclick="analyze()">Analyze</button>
       </div>
       <div class="result-label">
         <label id="result-label"></label>
@@ -175,6 +175,8 @@
       if (style.display === 'none') {
         el("image-picked").className = 'no-display';
         el("upload-label").innerHTML = 'No file chosen';
+        el("result-label").innerHTML = '';
+        el("confidence-label").innerHTML = '';
         mainElement.setAttribute("style", "display: block;");
         document.getElementById("content").setAttribute("style", "display: none");
       } else {
