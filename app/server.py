@@ -48,10 +48,13 @@ async def setup_learner(url, filename):
             raise
 
 
-# loop = asyncio.get_event_loop()
-# tasks = [asyncio.ensure_future(setup_learner(export_baseball_file_url, export_baseball_file_name))]
-# learner = loop.run_until_complete(asyncio.gather(*tasks))[0]
-# loop.close()
+loop = asyncio.get_event_loop()
+baseball_tasks = [asyncio.ensure_future(setup_learner(export_baseball_file_url, export_baseball_file_name))]
+baseball_learner = loop.run_until_complete(asyncio.gather(*baseball_tasks))[0]
+
+lung_tasks = [asyncio.ensure_future(setup_learner(export_lung_file_url, export_lung_file_name))]
+lung_learner = loop.run_until_complete(asyncio.gather(*lung_tasks))[0]
+loop.close()
 
 
 @app.route('/')
@@ -62,10 +65,6 @@ async def homepage(request):
 
 @app.route('/analyze/Baseball', methods=['POST'])
 async def analyze(request):
-    loop = asyncio.get_event_loop()
-    tasks = [asyncio.ensure_future(setup_learner(export_baseball_file_url, export_baseball_file_name))]
-    learner = loop.run_until_complete(asyncio.gather(*tasks))[0]
-    loop.close()
     img_data = await request.form()
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
@@ -74,10 +73,6 @@ async def analyze(request):
 
 @app.route('/analyze/Lung', methods=['POST'])
 async def analyze(request):
-    loop = asyncio.get_event_loop()
-    tasks = [asyncio.ensure_future(setup_learner(export_lung_file_url, export_lung_file_name))]
-    learner = loop.run_until_complete(asyncio.gather(*tasks))[0]
-    loop.close()
     img_data = await request.form()
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
