@@ -18,7 +18,7 @@ function analyze(model) {
   var uploadFiles = el("file-input").files;
   if (uploadFiles.length !== 1) alert("Please select a file to analyze!");
 
-  el("analyze-" + model + "-button").innerHTML = "Analyzing...";
+  el("analyze-button").innerHTML = "Analyzing...";
   var xhr = new XMLHttpRequest();
   var loc = window.location;
   xhr.open("POST", `${loc.protocol}//${loc.hostname}:${loc.port}/analyze/` + model,
@@ -31,7 +31,7 @@ function analyze(model) {
       var response = JSON.parse(e.target.responseText);
       el("result-label").innerHTML = `Result = ${response["result"]}`;
     }
-    el("analyze-" + model + "-button").innerHTML = "Analyze";
+    el("analyze--button").innerHTML = "Go Go Gadget Analyze";
   };
 
   var fileData = new FormData();
