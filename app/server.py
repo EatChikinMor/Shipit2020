@@ -9,8 +9,13 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
+export_lung_file_url = 'https://www.dropbox.com/s/qtab7fif08cpahw/lung-condition-796.pkl?raw=1'
+export_lung_file_name = 'lung-condition-796.pkl'
+
 export_baseball_file_url = 'https://www.dropbox.com/s/izy2c9bvv2757vz/export_baseball.pkl?raw=1'
 export_baseball_file_name = 'export_baseball.pkl'
+
+
 
 classes = ['cricket', 'baseball']
 path = Path(__file__).parent
@@ -30,9 +35,9 @@ async def download_file(url, dest):
 
 
 async def setup_learner(url, filename):
-    await download_file(export_baseball_file_url, path / export_baseball_file_name)
+    await download_file(url, path / filename)
     try:
-        learn = load_learner(path, export_baseball_file_name)
+        learn = load_learner(path, filename)
         return learn
     except RuntimeError as e:
         if len(e.args) > 0 and 'CPU-only machine' in e.args[0]:
@@ -44,8 +49,13 @@ async def setup_learner(url, filename):
 
 
 loop = asyncio.get_event_loop()
-tasks = [asyncio.ensure_future(setup_learner(export_baseball_file_url, export_baseball_file_name))]
+baseball_tasks = [asyncio.ensure_future(setup_learner(export_baseball_file_url, export_baseball_file_name))]
 baseball_learner = loop.run_until_complete(asyncio.gather(*tasks))[0]
+loop.close()
+
+loop = asyncio.get_event_loop()
+lung_tasks = [asyncio.ensure_future(setup_learner(export_lung_file_url, export_lung_file_name))]
+lung_learner = loop.run_until_complete(asyncio.gather(*tasks))[0]
 loop.close()
 
 
@@ -55,12 +65,20 @@ async def homepage(request):
     return HTMLResponse(html_file.open().read())
 
 
-@app.route('/analyze', methods=['POST'])
+@app.route('/analyzeBaseball', methods=['POST'])
 async def analyze(request):
     img_data = await request.form()
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
     prediction = baseball_learner.predict(img)[0]
+    return JSONResponse({'result': str(prediction)})
+
+@app.route('/analyzeLung', methods=['POST'])
+async def analyze(request):
+    img_data = await request.form()
+    img_bytes = await (img_data['file'].read())
+    img = open_image(BytesIO(img_bytes))
+    prediction = lung_learner.predict(img)[0]
     return JSONResponse({'result': str(prediction)})
 
 
