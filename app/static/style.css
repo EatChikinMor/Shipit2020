@@ -26,7 +26,7 @@ body {
     color: white;
     border-radius: 5px;
 }
-lab
+
 .backing-well {
     z-index: 0;
     position: fixed;
@@ -118,7 +118,7 @@ lab
 .result-label {
     margin-top: 0.5em;
     padding: 10px;
-    font-size: 16px;
+    font-size: 13px;
 }
 
 .confidence-label {
