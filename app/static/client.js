@@ -29,9 +29,7 @@ function analyze(model) {
   xhr.onload = function(e) {
     if (this.readyState === 4) {
       var response = JSON.parse(e.target.responseText);
-      response.result = response.result.split(', ')
-      var returnObj = { prediction: '', predictionArray:   }
-      response.result[0] = response.result[0].split(" ")[1]
+
       el("result-label").innerHTML = `Result = ${response["result"]}`;
     }
     el("analyze--button").innerHTML = "Go Go Gadget Analyze";
@@ -42,7 +40,7 @@ function analyze(model) {
   xhr.send(fileData);
 }
 
-function yieldResult(result) {
+function yieldResult(result, resultIndex, resultConfidence) {
   let beginning = 'Hmmmm. I\'m resonably certain It\'s an image of ';
   let confidence = 1;
   if (confidence > 0.6) {

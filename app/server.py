@@ -70,7 +70,7 @@ async def analyze(request):
     img = open_image(BytesIO(img_bytes))
     prediction = baseball_learner.predict(img)
 
-    return JSONResponse({'result': str(prediction[0]), 'resultIndex': str(prediction[1], 'resultConfidence': str(prediction[2]})
+    return JSONResponse({'result': str(prediction[0]), 'resultIndex': str(prediction[1]), 'resultConfidence': str(prediction[2])})
 
 @app.route('/analyze/Lung', methods=['POST'])
 async def analyze(request):
@@ -78,7 +78,7 @@ async def analyze(request):
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
     prediction = lung_learner.predict(img)
-    return JSONResponse({'result': str(prediction[0]), 'resultIndex': str(prediction[1], 'resultConfidence': str(prediction[2]})
+    return JSONResponse({'result': str(prediction[0]), 'resultIndex': str(prediction[1]), 'resultConfidence': str(prediction[2])})
 
 
 if __name__ == '__main__':
