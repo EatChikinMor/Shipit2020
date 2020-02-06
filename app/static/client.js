@@ -21,7 +21,7 @@ function analyze(model) {
   el("analyze-button").innerHTML = "Analyzing...";
   var xhr = new XMLHttpRequest();
   var loc = window.location;
-  xhr.open("POST", `${loc.protocol}//${loc.hostname}:${loc.port}/analyze/` + model,
+  xhr.open("POST", `${loc.protocol}//${loc.hostname}:${loc.port}/analyze/` + window.mlModel,
     true);
   xhr.onerror = function() {
     alert(xhr.responseText);

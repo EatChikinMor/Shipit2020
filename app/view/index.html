@@ -86,6 +86,12 @@
                   accent = '#c30036';
           setTheme(background, main, accent);
         },
+        outdoor: function () {
+          const background = '#1f4ab7',
+                  main = '#ffffff',
+                  accent = '#c30036';
+          setTheme(background, main, accent);
+        },
         shipit: function() {
           const background = '#FFF',
                   main = '#333334',
@@ -125,7 +131,7 @@
     };
 
     let changeModel = function(model) {
-      document.mlModel = model;
+      window.mlModel = model;
 
       swapView();
 
