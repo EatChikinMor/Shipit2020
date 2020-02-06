@@ -1,9 +1,11 @@
 body {
     background-color: rgba(255, 255, 255, 0);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .logo-well {
     float: left;
+    position: fixed;
 }
 
 .logo-well object {
@@ -13,6 +15,16 @@ body {
 
 .path0 {
     fill: orange !important;
+}
+
+#back-button {
+    position: fixed;
+    left: 30px;
+    top: 110px;
+    background: black;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
 }
 
 .backing-well {
@@ -36,23 +48,58 @@ body {
     z-index: 0;
 }
 
+#image-picked {
+    border-radius: 10px;
+}
+
 .no-display {
     display: none;
 }
 
+/** MAIN **/
+
+#main.center {
+    padding-top: 160px;
+}
+
+#main.center h1 {
+    font-size: 56px;
+}
+
+#main.center button {
+    border: rgb(58,58,59);
+    background: rgba(58,58,59, 0.85);
+    color: #fff;
+    font-size: 36px;
+    padding: 30px;
+    display: block;
+    margin: 75px auto 0;
+}
+
+#main.center button:hover {
+    border: rgb(253, 215, 37);
+    background: rgba(253, 215, 37, 0.85);
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/** END MAIN **/
+
+
+/** BEGIN COMMON **/
+
 .center {
     margin: auto;
-    padding: 10px 50px;
+    padding: 10px 85px;
     text-align: center;
     font-size: 14px;
     position: relative;
 }
 
-.title {
+#title {
     font-size: 30px;
     margin-top: 1em;
     margin-bottom: 1em;
-    color: #3a3a3b;
 }
 
 .content {
@@ -74,24 +121,24 @@ body {
     font-size: 13px;
 }
 
-button.choose-file-button {
+button#choose-file-button {
     width: 200px;
     height: 40px;
     border-radius: 2px;
-    background-color: rgba(58,58,59, 0.85);
-    border: solid 1px #fdd725;
+    background-color: #363b17;
+    border: solid 1px #4dfd5e;
     font-size: 13px;
-    color: #fdd725;
+    color: #59fd1e;
 }
 
-button.analyze-button {
+button#analyze-button {
     width: 200px;
     height: 40px;
-    border: solid 1px #fdd725;
+    border: solid 1px #fd6591;
     border-radius: 2px;
-    background-color: #fdd725;
+    background-color: #fd4361;
     font-size: 13px;
-    color: #3a3a3b;
+    color: #00153b;
 }
 
 button:focus {

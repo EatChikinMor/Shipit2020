@@ -1,6 +1,7 @@
 <html lang='en'>
 <head>
   <meta charset='utf-8'>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
   <link rel='stylesheet' href='../static/style.css'>
   <script src='../static/client.js'></script>
 </head>
@@ -18,13 +19,23 @@
     </object>
   </div>
 
-  <div class="">
+  <!-- Main Selector -->
+  <div id="main" class="center" style="display: block;">
+    <h1>Ship It 2020</h1>
+    <h2>Untitled Machine Learning Application</h2>
+    <button href="#" class="btn-wrap" onclick="changeModel('Baseball')">
+      <span class="btn btn-primary">Baseball/Cricket Decider</span>
+    </button>
 
+    <button href="#" class="btn-wrap" onclick="changeModel('Lung')">
+      <span class="btn btn-primary">Chest X-Ray Analyzer</span>
+    </button>
   </div>
 
-  <div class='center'>
-    <div class='title'>Classify Batting Images</div>
-    <p>
+  <div id="content" class='center' style="display: none;">
+    <button id="back-button" onclick="changeModel('')">← Back</button>
+    <div id='title'>Classify Batting Images</div>
+    <p id="description">
       Use images of either Baseball or Cricket to truly nail down which one you're looking at
     </p>
     <div class='content'>
@@ -36,7 +47,7 @@
                accept='image/*'
                onchange='showPicked(this)'>
       </div>
-      <button class='choose-file-button' type='button' onclick='showPicker()'>Select Image</button>
+      <button id='choose-file-button' type='button' onclick='showPicker()'>Select Image</button>
       <div class='upload-label'>
         <label id='upload-label'>No file chosen</label>
       </div>
@@ -44,10 +55,7 @@
         <img id='image-picked' class='no-display' alt='Chosen Image' height='200'>
       </div>
       <div class='analyze'>
-        <button class='analyze-button' id='analyze-Baseball-button' type='button' onclick='analyze("Baseball")'>Analyze Baseball</button>
-      </div>
-      <div class='analyze'>
-        <button class='analyze-button' id='analyze-Lung-button' type='button' onclick='analyze("Lung")'>Analyze Lungs</button>
+        <button id='analyze-button' id='analyze-Baseball-button' type='button' onclick='analyze()'>Go Go Gadget Analyze</button>
       </div>
       <div class='result-label'>
         <label id='result-label'></label>
@@ -67,9 +75,15 @@
           setTheme(background, main, accent);
         },
         baseball: function() {
-          const background = '#000',
-                  main = '#FFF',
-                  accent = '#939393';
+          const background = '#FFF',
+                  main = '#0D2154',
+                  accent = '#E63239';
+          setTheme(background, main, accent);
+        },
+        cricket: function() {
+          const background = '#1f4ab7',
+                  main = '#ffffff',
+                  accent = '#c30036';
           setTheme(background, main, accent);
         },
         shipit: function() {
@@ -82,7 +96,13 @@
     })();
 
     let setTheme = function(background, main, accent) {
-      document.body.setAttribute('style', 'background: ' + background);
+      document.body.setAttribute('style', 'background: ' + background + '; color: ' + main);
+      let button = document.getElementById('choose-file-button');
+      button.setAttribute("style", "background-color: " + main + "; border: solid 1px " + accent + "; color: " + accent);
+      button = document.getElementById('analyze-button');
+      button.setAttribute("style", "background-color: " + accent + "; border: solid 1px " + accent + "; color: " + main);
+      button = document.getElementById('back-button');
+      button.setAttribute("style", "background-color: " + accent + "; border: solid 1px " + accent + "; color: " + main);
       let logo = document.querySelector("#logo");
       let backing = document.querySelector("#backing");
       setSvgColor(logo, background, main, accent);
@@ -102,7 +122,53 @@
       for (let i = 0; i < accentPaths.length; i++) {
         accentPaths[i].setAttribute("style", "fill:" + accent);
       }
-    }
+    };
+
+    let changeModel = function(model) {
+      document.mlModel = model;
+
+      swapView();
+
+      let theme = 'shipit';
+      let headingText = '';
+      let description = '';
+
+      switch(model) {
+        case 'Baseball':
+          theme = 'baseball';
+          headingText = 'Classify Batting Images';
+          description = 'Use images of either Baseball or Cricket to truly nail down which one you\'re looking at';
+          break;
+        case 'Lung':
+          theme = 'xray';
+          headingText = 'Identify Lung Ailments';
+          description = 'Upload chest X-Rays to identify Pulmonary Fibrosis, Cardiomegaly, Pleural Effusions, Pulmonary Infiltration or Atelectasis.';
+          break;
+        default:
+          theme = 'shipit';
+          headingText = '';
+          description = '';
+          break;
+      }
+
+      document.getElementById('title').innerHTML = headingText;
+      document.getElementById('description').innerHTML = description;
+      themes[theme]()
+    };
+
+    let swapView = function(goHome) {
+      let mainElement = document.getElementById('main');
+      let style = window.getComputedStyle(mainElement);
+      if (style.display === 'none') {
+        el("image-picked").className = 'no-display';
+        el("upload-label").innerHTML = 'No file chosen';
+        mainElement.setAttribute("style", "display: block;");
+        document.getElementById("content").setAttribute("style", "display: none");
+      } else {
+        mainElement.setAttribute("style", "display: none;");
+        document.getElementById("content").setAttribute("style", "display: block");
+      }
+    };
 
     setTimeout(themes.shipit, 100)
   </script>
