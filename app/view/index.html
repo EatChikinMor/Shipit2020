@@ -6,9 +6,22 @@
 </head>
 <body>
 <div>
-  <div class="img-well">
-    <img src="./../static/ship20_cropped.png"/>
+  <div class="logo-well">
+    <object id="logo" type="image/svg+xml" data="./../static/ShiptIt.svg">
+      Your browser does not support SVG
+    </object>
   </div>
+  <div class="backing-well">
+<!--    <img src="./../static/ship20_cropped.png"/>-->
+    <object id="backing" type="image/svg+xml" data="./../static/ShiptIt.svg">
+      Your browser does not support SVG
+    </object>
+  </div>
+
+  <div class="">
+
+  </div>
+
   <div class='center'>
     <div class='title'>Classify Batting Images</div>
     <p>
@@ -40,4 +53,54 @@
   </div>
 </div>
 </body>
+  <script type="text/javascript">
+
+    let themes = (function() {
+      return {
+        xray: function() {
+          const background = '#000',
+                  main = '#FFF',
+                  accent = '#939393';
+          setTheme(background, main, accent);
+        },
+        baseball: function() {
+          const background = '#000',
+                  main = '#FFF',
+                  accent = '#939393';
+          setTheme(background, main, accent);
+        },
+        shipit: function() {
+          const background = '#FFF',
+                  main = '#333334',
+                  accent = '#FDD725';
+          setTheme(background, main, accent);
+        }
+      }
+    })();
+
+    let setTheme = function(background, main, accent) {
+      document.body.setAttribute('style', 'background: ' + background);
+      let logo = document.querySelector("#logo");
+      let backing = document.querySelector("#backing");
+      setSvgColor(logo, background, main, accent);
+      setSvgColor(backing, background, main, accent);
+    };
+
+    let setSvgColor = function(document, background, main, accent) {
+      let logoDocument= document.contentDocument;
+
+      let mainPaths = logoDocument.getElementsByClassName('path1');
+      let accentPaths = logoDocument.getElementsByClassName('path0');
+
+      for (let i = 0; i < mainPaths.length; i++) {
+        mainPaths[i].setAttribute("style", "fill:" + main);
+      }
+
+      for (let i = 0; i < accentPaths.length; i++) {
+        accentPaths[i].setAttribute("style", "fill:" + accent);
+      }
+    }
+
+    setTimeout(themes.shipit, 100)
+  </script>
 </html>

@@ -9,8 +9,8 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
-export_file_url = 'https://www.dropbox.com/s/izy2c9bvv2757vz/export.pkl?raw=1'
-export_file_name = 'export.pkl'
+export_baseball_file_url = 'https://www.dropbox.com/s/izy2c9bvv2757vz/export.pkl?raw=1'
+export_baseball_file_name = 'export.pkl'
 
 classes = ['cricket', 'baseball']
 path = Path(__file__).parent
@@ -29,10 +29,10 @@ async def download_file(url, dest):
                 f.write(data)
 
 
-async def setup_learner():
-    await download_file(export_file_url, path / export_file_name)
+async def setup_learner(url, filename):
+    await download_file(export_baseball_file_url, path / export_baseball_file_name)
     try:
-        learn = load_learner(path, export_file_name)
+        learn = load_learner(path, export_baseball_file_name)
         return learn
     except RuntimeError as e:
         if len(e.args) > 0 and 'CPU-only machine' in e.args[0]:
@@ -44,8 +44,8 @@ async def setup_learner():
 
 
 loop = asyncio.get_event_loop()
-tasks = [asyncio.ensure_future(setup_learner())]
-learn = loop.run_until_complete(asyncio.gather(*tasks))[0]
+tasks = [asyncio.ensure_future(setup_learner(export_baseball_file_url, export_baseball_file_name))]
+baseball_learner = loop.run_until_complete(asyncio.gather(*tasks))[0]
 loop.close()
 
 
@@ -60,7 +60,7 @@ async def analyze(request):
     img_data = await request.form()
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
-    prediction = learn.predict(img)[0]
+    prediction = baseball_learner.predict(img)[0]
     return JSONResponse({'result': str(prediction)})
 
 
