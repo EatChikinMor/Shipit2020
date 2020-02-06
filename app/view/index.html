@@ -142,7 +142,7 @@
 
       switch(model) {
         case 'Baseball':
-          theme = 'outdoor';
+          theme = window.enableResultTheme ? 'outdoor' : window.baseballTheme;
           headingText = 'Classify Bat Sport Images';
           description = 'Use images of either Baseball or Cricket to truly nail down which one you\'re looking at';
           algorithmInformation = 'Accuracy achieved - 89.76%';
@@ -179,6 +179,8 @@
       }
     };
 
-    setTimeout(themes.shipit, 100)
+    // Added window configurable variables to make the demo editable without deployment
+    window.baseballTheme = 'baseball';
+    window.enableResultTheme = false;
   </script>
 </html>
