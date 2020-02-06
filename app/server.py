@@ -9,8 +9,8 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
-export_baseball_file_url = 'https://www.dropbox.com/s/izy2c9bvv2757vz/export.pkl?raw=1'
-export_baseball_file_name = 'export.pkl'
+export_baseball_file_url = 'https://www.dropbox.com/s/izy2c9bvv2757vz/export_baseball.pkl?raw=1'
+export_baseball_file_name = 'export_baseball.pkl'
 
 classes = ['cricket', 'baseball']
 path = Path(__file__).parent
