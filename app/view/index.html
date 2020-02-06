@@ -2,6 +2,7 @@
 <head>
   <meta charset='utf-8'>
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <link rel='stylesheet' href='../static/style.css'>
   <script src='../static/client.js'></script>
 </head>
@@ -20,7 +21,7 @@
   </div>
 
   <!-- Main Selector -->
-  <div id="main" class="center" style="display: block;">
+  <div id="main" class="center animated fadeIn" style="display: block;">
     <h1>Ship It 2020</h1>
     <h2>Untitled Machine Learning Application</h2>
     <button href="#" class="btn-wrap" onclick="changeModel('Baseball')">
@@ -32,7 +33,7 @@
     </button>
   </div>
 
-  <div id="content" class='center' style="display: none;">
+  <div id="content" class="center animated fadeIn" style="display: none;">
     <button id="back-button" onclick="changeModel('')">← Back</button>
     <div id="title">Classify Batting Images</div>
     <p id="description">
