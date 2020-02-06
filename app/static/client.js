@@ -82,5 +82,5 @@ function yieldResult(response) {
   }
 
   el("result-label").innerHTML = beginning + response.result.toLowerCase();
-  el("confidence-label").innerHTML = "Confidence: " + confidence*100 + "%";
+  el("confidence-label").innerHTML = "Confidence: " + (confidence*100).toFixed(2) + "%";
 }
