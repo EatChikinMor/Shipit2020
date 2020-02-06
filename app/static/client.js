@@ -72,15 +72,15 @@ function yieldResult(response) {
         beginning = 'Reasonably certain this is ';
         break;
     }
-    if(window.mlModel === 'Baseball' && window.enableResultTheme) {
-      if (response.result === 'baseball') {
-        themes.baseball()
-      } else {
-        themes.cricket()
-      }
-    }
-
-    el("result-label").innerHTML = beginning + response.result.toLowerCase();
-    el("confidence-label").innerHTML = "Confidence:" + confidence*100;
   }
+  if(window.mlModel === 'Baseball' && window.enableResultTheme) {
+    if (response.result === 'baseball') {
+      themes.baseball()
+    } else {
+      themes.cricket()
+    }
+  }
+
+  el("result-label").innerHTML = beginning + response.result.toLowerCase();
+  el("confidence-label").innerHTML = "Confidence: " + confidence*100 + "%";
 }
