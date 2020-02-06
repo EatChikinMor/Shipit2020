@@ -118,11 +118,11 @@ body {
 .result-label {
     margin-top: 0.5em;
     padding: 10px;
-    font-size: 18px;
+    font-size: 22px;
 }
 
 .confidence-label {
-    padding: 10px;
+    padding: 5px;
     font-size: 22px;
 }
 
