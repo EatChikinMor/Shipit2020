@@ -50,12 +50,12 @@ async def setup_learner(url, filename):
 
 loop = asyncio.get_event_loop()
 baseball_tasks = [asyncio.ensure_future(setup_learner(export_baseball_file_url, export_baseball_file_name))]
-baseball_learner = loop.run_until_complete(asyncio.gather(*tasks))[0]
+baseball_learner = loop.run_until_complete(asyncio.gather(*baseball_tasks))[0]
 loop.close()
 
 loop = asyncio.get_event_loop()
 lung_tasks = [asyncio.ensure_future(setup_learner(export_lung_file_url, export_lung_file_name))]
-lung_learner = loop.run_until_complete(asyncio.gather(*tasks))[0]
+lung_learner = loop.run_until_complete(asyncio.gather(*lung_tasks))[0]
 loop.close()
 
 
