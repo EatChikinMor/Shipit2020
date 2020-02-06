@@ -87,9 +87,9 @@
           setTheme(background, main, accent);
         },
         outdoor: function () {
-          const background = '#1f4ab7',
+          const background = '#0f7012',
                   main = '#ffffff',
-                  accent = '#c30036';
+                  accent = '#b39954';
           setTheme(background, main, accent);
         },
         shipit: function() {
@@ -138,17 +138,20 @@
       let theme = 'shipit';
       let headingText = '';
       let description = '';
+      let algorithmInformation = '';
 
       switch(model) {
         case 'Baseball':
-          theme = 'baseball';
-          headingText = 'Classify Batting Images';
+          theme = 'outdoor';
+          headingText = 'Classify Bat Sport Images';
           description = 'Use images of either Baseball or Cricket to truly nail down which one you\'re looking at';
+          algorithmInformation = 'Accuracy achieved - 89.76%';
           break;
         case 'Lung':
           theme = 'xray';
           headingText = 'Identify Lung Ailments';
           description = 'Upload chest X-Rays to identify Pulmonary Fibrosis, Cardiomegaly, Pleural Effusions, Pulmonary Infiltration or Atelectasis.';
+          algorithmInformation = 'Accuracy achieved - 79.6%';
           break;
         default:
           theme = 'shipit';

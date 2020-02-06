@@ -68,7 +68,7 @@ async def analyze(request):
     img_data = await request.form()
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
-    prediction = baseball_learner.predict(img)[0]
+    prediction = baseball_learner.predict(img)
     return JSONResponse({'result': str(prediction)})
 
 @app.route('/analyze/Lung', methods=['POST'])
@@ -76,7 +76,7 @@ async def analyze(request):
     img_data = await request.form()
     img_bytes = await (img_data['file'].read())
     img = open_image(BytesIO(img_bytes))
-    prediction = lung_learner.predict(img)[0]
+    prediction = lung_learner.predict(img)
     return JSONResponse({'result': str(prediction)})
 
 
